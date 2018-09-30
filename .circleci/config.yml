@@ -70,4 +70,6 @@ workflows:
       - push_dist:
           filters:
             branches:
-              ignore: /^dist*/ /^develop/
+              ignore:
+               - /^dist*/
+               - develop
