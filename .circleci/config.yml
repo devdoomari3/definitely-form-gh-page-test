@@ -36,6 +36,11 @@ jobs:
   push_master:
     docker:
       - image: circleci/node:8-browsers
+    environment:
+      GIT_COMMITER_NAME: 'devdoomari-circleci'
+      GIT_COMMITER_EMAIL: 'devdoomari@gmail.com'
+      GIT_AUTHOR_NAME: 'devdoomari-circleci'
+      GIT_AUTHOR_EMAIL: 'devdoomari@gmail.com'
     steps:
       - checkout
       - run:
