@@ -44,6 +44,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Set git username/email
+          command: 'mkdir -p ~/.git && git config --global user.email "devdoomari@gmail.com" && git --global config user.name "devdoomari.circleci"'
+      - run:
           name: install-yarn-globally
           command: 'sudo npm install -g yarn'
       - restore_cache:
@@ -81,6 +84,7 @@ workflows:
               ignore:
                - /^dist*/
                - develop
+               - master
       - push_master:
           filters:
             branches:
