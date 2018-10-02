@@ -88,7 +88,7 @@ jobs:
           command: |
             git checkout -b $'dist-'"$CIRCLE_BRANCH"
             ./.circleci/pullAndMerge.sh
-            git push --set-upstream origin $'dist-'"$CIRCLE_BRANCH" --force --follow-tags
+            git push --set-upstream origin master --force --follow-tags
 
 workflows:
   version: 2
