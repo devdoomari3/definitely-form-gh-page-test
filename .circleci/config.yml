@@ -28,8 +28,6 @@ jobs:
       - run:
           name: pull-merge-build-forcepush
           command: |
-            git pull origin $CIRCLE_BRANCH
-            git merge -X theirs --no-edit $CIRCLE_BRANCH
             git checkout -b $'dist-'"$CIRCLE_BRANCH"
             ./.circleci/pullAndMerge.sh
             git push --set-upstream origin $'dist-'"$CIRCLE_BRANCH" --force --follow-tags
@@ -62,8 +60,8 @@ jobs:
       - run:
           name: pull-merge-build-forcepush
           command: |
+            git checkout master
             ./.circleci/pullAndMerge.sh
-            git push -f origin `git rev-parse HEAD`:master
             git push --set-upstream origin master --force --follow-tags
 
 workflows:
