@@ -40,6 +40,6 @@
     "dev": "parcel index.html"
   },
   "dependencies": {},
-  "name": "definitely-form",
+  "name": "definitely-form-gh-test",
   "version": "0.0.1"
 }

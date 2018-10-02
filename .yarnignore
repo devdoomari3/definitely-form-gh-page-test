@@ -2,6 +2,3 @@ node_modules
 ts_compiled
 .cache
 dist
-docs
-lib
-docs/*.map
