@@ -99,6 +99,7 @@ workflows:
             branches:
               ignore:
                - /^dist*/
+               - develop
       - push_master:
           filters:
             branches:
