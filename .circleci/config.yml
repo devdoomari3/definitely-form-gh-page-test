@@ -1,3 +1,5 @@
+user.email: devdoomari@gmail.com
+user.name: devdoomari-circlei
 jobs:
   push_dist:
     docker:
@@ -28,16 +30,22 @@ jobs:
       - run:
           name: pull-merge-build-forcepush
           command: |
-            git pull origin $CIRCLE_BRANCH
-            git merge -X theirs --no-edit $CIRCLE_BRANCH
             git checkout -b $'dist-'"$CIRCLE_BRANCH"
             ./.circleci/pullAndMerge.sh
             git push --set-upstream origin $'dist-'"$CIRCLE_BRANCH" --force --follow-tags
   push_master:
     docker:
       - image: circleci/node:8-browsers
+    environment:
+      GIT_COMMITER_NAME: 'devdoomari-circleci'
+      GIT_COMMITER_EMAIL: 'devdoomari@gmail.com'
+      GIT_AUTHOR_NAME: 'devdoomari-circleci'
+      GIT_AUTHOR_EMAIL: 'devdoomari@gmail.com'
     steps:
       - checkout
+      - run:
+          name: Set git username/email
+          command: 'mkdir -p ~/.git && git config --global user.email "devdoomari@gmail.com" && git config --global user.name "devdoomari.circleci"'
       - run:
           name: install-yarn-globally
           command: 'sudo npm install -g yarn'
@@ -62,8 +70,8 @@ jobs:
       - run:
           name: pull-merge-build-forcepush
           command: |
+            git checkout master
             ./.circleci/pullAndMerge.sh
-            git push -f origin `git rev-parse HEAD`:master
             git push --set-upstream origin master --force --follow-tags
 
 workflows:
@@ -76,6 +84,7 @@ workflows:
               ignore:
                - /^dist*/
                - develop
+               - master
       - push_master:
           filters:
             branches:
