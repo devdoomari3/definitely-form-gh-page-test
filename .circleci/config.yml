@@ -41,7 +41,6 @@ jobs:
             fi
             git checkout master
             mkdir -p ~/.git && git config user.email "devdoomari@gmail.com" && git config user.name "devdoomari.circleci"
-            git pull origin $CIRCLE_BRANCH
             git merge -X theirs --no-edit $CIRCLE_BRANCH
             git add -f lib docs
             git commit --allow-empty -m $'generated from:'"$CIRCLE_SHA1"$'\ntriggered by:'"$CIRCLE_USERNAME"$'\n[ci skip]'
